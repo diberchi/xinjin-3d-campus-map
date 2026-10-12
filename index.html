@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>新進國小立體校園地圖</title>
+<meta name="description" content="新進國小 115 學年度立體互動校園地圖：建築樓層、逃生路線與大操場集合位置。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="stage"></div>
+<div id="labels"></div>
+
+<header class="topbar glass">
+  <div class="brand">
+    <div class="logo" aria-hidden="true">新</div>
+    <div>
+      <h1>新進國小立體校園地圖</h1>
+      <p>115 學年度 · 逃生路線與集合位置（導師版）</p>
+    </div>
+  </div>
+  <div class="tools">
+    <button class="tool on" id="tLabels" title="顯示建築標籤" aria-pressed="true">標籤</button>
+    <button class="tool on danger" id="tRoutes" title="顯示逃生路線" aria-pressed="true">逃生路線</button>
+    <button class="tool on warn" id="tAssembly" title="顯示集合位置" aria-pressed="true">集合位置</button>
+    <button class="tool" id="tTour" title="自動導覽各棟建築" aria-pressed="false">自動導覽</button>
+    <button class="tool" id="tNight" title="切換夜間" aria-pressed="false">夜間</button>
+    <button class="tool" id="tReset" title="回到全校視角">全景</button>
+  </div>
+</header>
+
+<aside class="side glass" id="side">
+  <div class="side-head">
+    <input id="search" type="search" placeholder="搜尋：教室 234、四3、校長室…" autocomplete="off" aria-label="搜尋教室、班級或建築">
+    <button class="fold" id="fold" aria-label="收合清單">−</button>
+  </div>
+  <div id="results" class="results" hidden></div>
+  <div class="tabs" role="tablist">
+    <button class="tab on" data-tab="places" role="tab">校園建築</button>
+    <button class="tab" data-tab="classes" role="tab">班級集合點</button>
+  </div>
+  <div class="side-body">
+    <ul id="places" class="list"></ul>
+    <div id="classes" class="classes" hidden></div>
+  </div>
+</aside>
+
+<aside class="info glass" id="info" hidden>
+  <button class="close" id="infoClose" aria-label="關閉">✕</button>
+  <div id="infoBody"></div>
+</aside>
+
+<div class="legend glass">
+  <span><i class="lg route"></i>避難方向</span>
+  <span><i class="lg cell"></i>班級集合點</span>
+  <span><i class="lg cmd"></i>指揮中心／編組</span>
+</div>
+<div class="hint glass" id="hint">左鍵拖曳：旋轉 · 右鍵拖曳：平移 · 滾輪：縮放 · 點建築看樓層</div>
+<footer class="copy">依「115上 逃生路線和集合位置（導師版）」平面圖繪製 · 實際配置以學校公告為準</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+<script src="data.js"></script>
+<script src="main.js"></script>
+</body>
+</html>
